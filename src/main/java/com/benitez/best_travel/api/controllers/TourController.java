@@ -30,6 +30,7 @@ public class TourController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             }
     )
+
     @Operation(summary = "Save in system one Tour based in list of hotels and flights")
     @PostMapping
     public ResponseEntity<TourResponse> post(@RequestBody TourRequest request) {

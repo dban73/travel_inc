@@ -3,6 +3,7 @@ package com.benitez.best_travel.api.controllers;
 import com.benitez.best_travel.api.models.responses.FlyResponse;
 import com.benitez.best_travel.infraestructure.abstract_services.IFlyService;
 import com.benitez.best_travel.util.exceptions.enums.SortType;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import java.util.Set;
 public class FlyController {
     private final IFlyService flyService;
 
+    @Operation(summary = "Return a page with flights can be sorted or not")
     @GetMapping
     public ResponseEntity<Page<FlyResponse>> getAll(
             @RequestParam Integer page,
@@ -30,6 +32,7 @@ public class FlyController {
         return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with flights with price less to price in parameter")
     @GetMapping("less_price")
     public ResponseEntity<Set<FlyResponse>> getLessPrice(
             @RequestParam BigDecimal price) {
@@ -37,6 +40,7 @@ public class FlyController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with flights with between prices in parameters")
     @GetMapping("between_price")
     public ResponseEntity<Set<FlyResponse>> getBetweenPrice(
             @RequestParam BigDecimal min,
@@ -45,6 +49,7 @@ public class FlyController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with flights with between origin and destiny in parameters")
     @GetMapping("origin_destiny")
     public ResponseEntity<Set<FlyResponse>> getOriginDestiny(
             @RequestParam String origin,

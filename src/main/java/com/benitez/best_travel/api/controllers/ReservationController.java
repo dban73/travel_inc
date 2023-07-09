@@ -39,22 +39,26 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.create(request));
     }
 
+    @Operation(summary = "Return a reservation with of passed")
     @GetMapping(path = "/{id}")
     public ResponseEntity<ReservationResponse> get(@PathVariable(name = "id") UUID id) {
         return ResponseEntity.ok(reservationService.read(id));
     }
 
+    @Operation(summary = "Update reservation")
     @PutMapping(path = "/{id}")
     public ResponseEntity<ReservationResponse> put(@Valid @PathVariable(name = "id") UUID id, @RequestBody ReservationRequest request) {
         return ResponseEntity.ok(reservationService.update(request, id));
     }
 
+    @Operation(summary = "Delete a reservation with of passed")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {
         reservationService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "return a reservation price given a hotel id")
     @GetMapping
     public ResponseEntity<Map<String, BigDecimal>> getHotelPrice(@RequestParam Long hotelId) {
         return ResponseEntity.ok(Collections.singletonMap("hotelPrice", reservationService.findByPrice(hotelId)));

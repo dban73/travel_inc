@@ -3,6 +3,7 @@ package com.benitez.best_travel.api.controllers;
 import com.benitez.best_travel.api.models.responses.HotelResponse;
 import com.benitez.best_travel.infraestructure.abstract_services.IHotelService;
 import com.benitez.best_travel.util.exceptions.enums.SortType;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ import java.util.Set;
 public class HotelController {
     private IHotelService hotelService;
 
-
+    @Operation(summary = "Return a page with hotels can be sorted or not")
     @GetMapping
     public ResponseEntity<Page<HotelResponse>> getAll(
             @RequestParam Integer page,
@@ -31,6 +32,7 @@ public class HotelController {
         return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with hotels with price less to price in parameter")
     @GetMapping("less_price")
     public ResponseEntity<Set<HotelResponse>> getLessPrice(
             @RequestParam BigDecimal price) {
@@ -38,6 +40,7 @@ public class HotelController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with hotels with between prices in parameters")
     @GetMapping("between_price")
     public ResponseEntity<Set<HotelResponse>> getBetweenPrice(
             @RequestParam BigDecimal min,
@@ -46,6 +49,7 @@ public class HotelController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(summary = "Return a list with hotels with ratting greater a parameter")
     @GetMapping("rating")
     public ResponseEntity<Set<HotelResponse>> getGreaterThan(
             @RequestParam Integer rating) {
