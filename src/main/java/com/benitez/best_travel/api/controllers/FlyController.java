@@ -3,6 +3,7 @@ package com.benitez.best_travel.api.controllers;
 import com.benitez.best_travel.api.models.responses.FlyResponse;
 import com.benitez.best_travel.infraestructure.abstract_services.IFlyService;
 import com.benitez.best_travel.util.exceptions.enums.SortType;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/flights")
+@Tag(name = "Fly")
 public class FlyController {
     private final IFlyService flyService;
 

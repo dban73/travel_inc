@@ -3,6 +3,7 @@ package com.benitez.best_travel.api.controllers;
 import com.benitez.best_travel.api.models.responses.HotelResponse;
 import com.benitez.best_travel.infraestructure.abstract_services.IHotelService;
 import com.benitez.best_travel.util.exceptions.enums.SortType;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,10 @@ import java.util.Set;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/hotels")
+@Tag(name = "Hotel")
 public class HotelController {
     private IHotelService hotelService;
+
 
     @GetMapping
     public ResponseEntity<Page<HotelResponse>> getAll(
