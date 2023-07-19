@@ -4,7 +4,7 @@ CREATE TABLE customer
     full_name       varchar(50) NOT NULL,
     credit_card    varchar(20) NOT NULL,
     total_flights  int NOT NULL,
-    total_lodgings int NOT NULL,
+    total_landings int NOT NULL,
     total_tours    int NOT NULL,
     phone_number  varchar(20) NOT NULL,
     CONSTRAINT pk_customer PRIMARY KEY ( dni )

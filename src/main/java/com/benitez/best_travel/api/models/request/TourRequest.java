@@ -1,5 +1,6 @@
 package com.benitez.best_travel.api.models.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
@@ -15,4 +16,6 @@ public class TourRequest {
     private String customerId;
     private Set<TourFlyRequest> flights;
     private Set<TourHotelRequest> hotels;
+    @Email(message = "Invalid Email")
+    private String email;
 }

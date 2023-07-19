@@ -35,7 +35,7 @@ insert into fly (origin_lat, origin_lng, destiny_lng, destiny_lat, origin_name, 
                                                                                                                     (44.4444, 55.555,  11.1111, 22.2222, 'Canada', 'Mexico', 'blue_sky', 16.99),
                                                                                                                     (11.1111, 22.2222, 44.4444, 55.5555, 'Mexico', 'Canada', 'blue_sky', 14.65);
 
-insert into customer (dni, full_name, credit_card, total_flights, total_lodgings, total_tours, phone_number) VALUES
+insert into customer (dni, full_name, credit_card, total_flights, total_landings, total_tours, phone_number) VALUES
                                                                                                                  ('VIKI771012HMCRG093', 'Ragnar Lothbrok', '6473-9486-9372-0921', 0, 0, 0, '33-74-58-43'),
                                                                                                                  ('BBMB771012HMCRR022', 'Walter White', '4463-3326-9980-5454', 0, 0, 0, '55-83-32-22'),
                                                                                                                  ('WALA771012HCRGR054', 'Wednesday Addams', '6677-5244-94572-0165', 0, 0, 0, '33-24-41-54'),

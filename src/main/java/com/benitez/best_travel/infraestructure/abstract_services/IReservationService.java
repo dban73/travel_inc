@@ -4,8 +4,9 @@ import com.benitez.best_travel.api.models.request.ReservationRequest;
 import com.benitez.best_travel.api.models.responses.ReservationResponse;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.UUID;
 
 public interface IReservationService extends CrudInterface<ReservationRequest, ReservationResponse, UUID> {
-    BigDecimal findByPrice(Long idHotel);
+    BigDecimal findByPrice(Long idHotel, Currency currency);
 }

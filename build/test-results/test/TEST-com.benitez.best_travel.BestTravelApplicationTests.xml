@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.benitez.best_travel.BestTravelApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-07-18T19:17:57" hostname="alejandro" time="0.414">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.benitez.best_travel.BestTravelApplicationTests" time="0.414"/>
+  <system-out><![CDATA[15:17:53.109 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.benitez.best_travel.BestTravelApplicationTests]: BestTravelApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:17:53.196 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.benitez.best_travel.BestTravelApplication for test class com.benitez.best_travel.BestTravelApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-07-18T15:17:53.458-04:00  INFO 19423 --- [    Test worker] c.b.b.BestTravelApplicationTests         : Starting BestTravelApplicationTests using Java 17.0.7 with PID 19423 (started by dban in /home/dban/dev/Java/best_travel)
+2023-07-18T15:17:53.460-04:00  INFO 19423 --- [    Test worker] c.b.b.BestTravelApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2023-07-18T15:17:54.116-04:00  INFO 19423 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-07-18T15:17:54.233-04:00  INFO 19423 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111 ms. Found 6 JPA repository interfaces.
+2023-07-18T15:17:54.603-04:00  INFO 19423 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-07-18T15:17:54.644-04:00  INFO 19423 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-07-18T15:17:54.645-04:00  INFO 19423 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-07-18T15:17:54.747-04:00  INFO 19423 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T15:17:54.848-04:00  INFO 19423 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-07-18T15:17:54.861-04:00  INFO 19423 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-07-18T15:17:55.083-04:00  INFO 19423 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@ba562e0
+2023-07-18T15:17:55.085-04:00  INFO 19423 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-07-18T15:17:55.141-04:00  INFO 19423 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@18bb1b88
+2023-07-18T15:17:55.354-04:00  INFO 19423 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-07-18T15:17:55.951-04:00  INFO 19423 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-07-18T15:17:56.035-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists fly alter column destiny_lat set data type float(53)
+2023-07-18T15:17:56.040-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists fly alter column destiny_lng set data type float(53)
+2023-07-18T15:17:56.043-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists fly alter column origin_lat set data type float(53)
+2023-07-18T15:17:56.046-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists fly alter column origin_lng set data type float(53)
+2023-07-18T15:17:56.050-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists reservation alter column date_reservation set data type timestamp(6)
+2023-07-18T15:17:56.053-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists ticket alter column arrival_date set data type timestamp(6)
+2023-07-18T15:17:56.056-04:00 DEBUG 19423 --- [    Test worker] org.hibernate.SQL                        : alter table if exists ticket alter column departure_date set data type timestamp(6)
+2023-07-18T15:17:56.155-04:00  INFO 19423 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-07-18T15:17:56.405-04:00  INFO 19423 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-07-18T15:17:57.273-04:00  WARN 19423 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-07-18T15:17:57.621-04:00  INFO 19423 --- [    Test worker] c.b.b.BestTravelApplicationTests         : Started BestTravelApplicationTests in 4.324 seconds (process running for 5.192)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

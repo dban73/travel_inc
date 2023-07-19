@@ -1,9 +1,6 @@
 package com.benitez.best_travel.api.models.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +18,6 @@ public class TicketRequest {
     @Positive
     @NotNull(message = "Id fly is mandatory")
     private Long idFly;
+    @Email(message = "Invalid Email")
+    private String email;
 }

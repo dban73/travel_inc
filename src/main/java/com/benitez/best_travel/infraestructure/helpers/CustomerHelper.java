@@ -1,6 +1,8 @@
 package com.benitez.best_travel.infraestructure.helpers;
 
 import com.benitez.best_travel.domain.repository.CustomerRepository;
+import com.benitez.best_travel.util.exceptions.IdNotFoundException;
+import com.benitez.best_travel.util.exceptions.enums.Tables;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class TicketController {
     )
     @Operation(summary = "Save in system un ticket with the fly passed in parameter")
     @PostMapping
-    public ResponseEntity<TicketResponse> post(@RequestBody TicketRequest request) {
+    public ResponseEntity<TicketResponse> post(@Valid @RequestBody TicketRequest request) {
         return ResponseEntity.ok(ticketService.create(request));
     }
 

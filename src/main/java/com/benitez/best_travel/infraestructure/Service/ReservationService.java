@@ -8,8 +8,10 @@ import com.benitez.best_travel.domain.repository.CustomerRepository;
 import com.benitez.best_travel.domain.repository.HotelRepository;
 import com.benitez.best_travel.domain.repository.ReservationRepository;
 import com.benitez.best_travel.infraestructure.abstract_services.IReservationService;
+import com.benitez.best_travel.infraestructure.helpers.ApiCurrencyConnectionHelper;
 import com.benitez.best_travel.infraestructure.helpers.BlackListHelper;
 import com.benitez.best_travel.infraestructure.helpers.CustomerHelper;
+import com.benitez.best_travel.infraestructure.helpers.EmailHelper;
 import com.benitez.best_travel.util.exceptions.IdNotFoundException;
 import com.benitez.best_travel.util.exceptions.enums.Tables;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Currency;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -33,6 +37,8 @@ public class ReservationService implements IReservationService {
     private final CustomerRepository customerRepository;
     private final CustomerHelper customerHelper;
     private final BlackListHelper blackListHelper;
+    private final ApiCurrencyConnectionHelper currencyConnectionHelper;
+    private final EmailHelper emailHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -55,6 +61,8 @@ public class ReservationService implements IReservationService {
                 .build();
         var reservationPersisted = reservationRepository.save(reservationToPersist);
         this.customerHelper.increase(customer.getDni(), ReservationService.class);
+
+        if(Objects.nonNull(request.getEmail()))this.emailHelper.sendMail(request.getEmail(),customer.getFullName(),Tables.reservation.name());
         return this.entityToResponse(reservationPersisted);
     }
 
@@ -106,10 +114,15 @@ public class ReservationService implements IReservationService {
 
 
     @Override
-    public BigDecimal findByPrice(Long idHotel) {
+    public BigDecimal findByPrice(Long idHotel, Currency currency) {
         var hotel = hotelRepository.findById(idHotel).orElseThrow(
                 () -> new IdNotFoundException(Tables.hotel.name())
         );
-        return hotel.getPrice().add(hotel.getPrice().multiply(CHARGES_PRICE_PERCENTAGE));
+        var priceInDollars = hotel.getPrice().add(hotel.getPrice().multiply(CHARGES_PRICE_PERCENTAGE));
+        if(currency.equals(Currency.getInstance("USD"))) return priceInDollars;
+        var currencyDTO = this.currencyConnectionHelper.getCurrency(currency);
+        log.info("API currency in {}, response {}",currencyDTO.getExchangeDate().toString(),
+                currencyDTO.getRates());
+        return priceInDollars.multiply(currencyDTO.getRates().get(currency));
     }
 }

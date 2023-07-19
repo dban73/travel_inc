@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 @Service
 public class FlyService implements IFlyService {
     private final FlyRepository flyRepository;
+    private final WebClient webClient;
 
     @Override
     public Page<FlyResponse> readAll(Integer page, Integer size, SortType sortType) {
