@@ -1,7 +1,6 @@
 package com.benitez.best_travel.infraestructure.helpers;
 
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +24,9 @@ public class EmailHelper {
         MimeMessage message = mailSender.createMimeMessage();
         String htmlContent = this.readHtmlTemplate(name,product);
         try {
-            message.setFrom(new InternetAddress(("nestor.benitez.diaz@gmail.com")));
+//            message.setFrom(new InternetAddress(("nestor.benitez.diaz@gmail.com")));
             message.setRecipients(MimeMessage.RecipientType.TO, to);
+            message.setSubject("NO-REPLY");
             message.setContent(htmlContent, MediaType.TEXT_HTML_VALUE);
             mailSender.send(message);
         } catch (MessagingException e) {
