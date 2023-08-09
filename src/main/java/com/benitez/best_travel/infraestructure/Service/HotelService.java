@@ -4,20 +4,18 @@ import com.benitez.best_travel.api.models.responses.HotelResponse;
 import com.benitez.best_travel.domain.entities.Hotel;
 import com.benitez.best_travel.domain.repository.HotelRepository;
 import com.benitez.best_travel.infraestructure.abstract_services.IHotelService;
+import com.benitez.best_travel.util.constants.CacheConstants;
 import com.benitez.best_travel.util.exceptions.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,10 +34,10 @@ public class HotelService implements IHotelService {
             case UPPER -> pageRequest = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
         }
         return hotelRepository.findAll(pageRequest).map(this::EntityToResponse);
-
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readLessPrice(BigDecimal price) {
         return hotelRepository.findByPriceLessThan(price)
                 .stream().map(this::EntityToResponse)
@@ -47,6 +45,7 @@ public class HotelService implements IHotelService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
         return hotelRepository.findByPriceBetween(min, max)
                 .stream().map(this::EntityToResponse)
@@ -54,6 +53,7 @@ public class HotelService implements IHotelService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readGreaterThan(Integer rating) {
         return hotelRepository.findByRatingGreaterThan(rating)
                 .stream().map(this::EntityToResponse)
